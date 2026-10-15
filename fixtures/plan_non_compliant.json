@@ -1,0 +1,94 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.3.0",
+  "planned_values": {},
+  "resource_changes": [
+    {
+      "address": "aws_s3_bucket.public_logs",
+      "type": "aws_s3_bucket",
+      "name": "public_logs",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "bucket": "public-logs-bucket",
+          "acl": "log-delivery-write",
+          "tags": {
+            "Environment": "production"
+          }
+        },
+        "after_unknown": {
+          "arn": true,
+          "domain_name": true,
+          "hosted_zone_id": true,
+          "id": true,
+          "region": true,
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "aws_s3_bucket_server_side_encryption_configuration.public_logs",
+      "type": "aws_s3_bucket_server_side_encryption_configuration",
+      "name": "public_logs",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "bucket": "public-logs-bucket",
+          "rule": [
+            {
+              "apply_server_side_encryption_by_default": {
+                "sse_algorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "after_unknown": {
+          "rule": [
+            {
+              "apply_server_side_encryption_by_default": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "address": "aws_s3_bucket_lifecycle_configuration.public_logs",
+      "type": "aws_s3_bucket_lifecycle_configuration",
+      "name": "public_logs",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "bucket": "public-logs-bucket",
+          "rule": [
+            {
+              "id": "archive-logs",
+              "status": "Enabled",
+              "expiration": {
+                "days": 45
+              }
+            }
+          ]
+        },
+        "after_unknown": {
+          "rule": [
+            {
+              "expiration": {}
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
