@@ -1,0 +1,24 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local logs and diagnostic output
+*.log
+*diagnostic*
+gitpush.log
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Terraform generated state and local configuration
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+
+# Environment files
+.env
+.env.*
+!.env.example
